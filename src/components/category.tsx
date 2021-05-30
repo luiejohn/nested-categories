@@ -1,7 +1,19 @@
 import React from "react";
 
-const Category = ({ category, insertNewCategory }) => {
-  const nestedCategories = (category.categories || []).map((cat) => {
+export interface categoryProp {
+  name: string;
+  categories: any[];
+}
+
+interface Props {
+  category: any;
+  insertNewCategory: (category: categoryProp, name: string) => void;
+}
+
+const Category: React.FC<Props> = (props) => {
+  const { category, insertNewCategory } = props;
+
+  const nestedCategories = (category.categories || []).map((cat: any) => {
     return (
       <Category
         key={cat.name}
